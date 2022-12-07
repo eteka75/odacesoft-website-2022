@@ -1,0 +1,49 @@
+{
+    "name": "Odacesoft • Agence d'ingénierie informatique à Parakou, Bénin",
+    "short_name":"Odacesoft",
+    "star_url":"/",
+    "display": "standalone",
+    "start_url": "/index.php",
+    "background_color": "white",
+    "theme_color": "white",
+    "orientation": "portrait-primary",
+    "icons":[
+        {
+          "src": "/storage/assets/apple/apple-touch-icon-72x72.png",
+          "type": "image/png",
+          "sizes": "57x57"
+        },
+        {
+          "src": "/storage/assets/apple/apple-touch-icon-76x76.png",
+          "type": "image/png",
+          "sizes": "76x76"
+        },
+        {
+          "src": "/storage/assets/apple/apple-touch-icon-152x152.png",
+          "type": "image/png",
+          "sizes": "152x152"
+        },
+        {
+          "src": "/storage/assets/apple/apple-touch-icon-144x144.png",
+          "type": "image/png",
+          "sizes": "144x144"
+        },
+        {
+          "src": "/storage/assets/apple/apple-touch-icon-180x180.png",
+          "type": "image/png",
+          "sizes": "180x180"
+        }
+        ,        
+        {
+            "src": "/storage/assets/apple/apple-touch-icon-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+          },
+        {
+            "src": "/storage/assets/apple/apple-touch-icon-180x180.png",
+            "type": "image/png",
+            "sizes": "180x180",
+            "purpose": "any maskable"
+        }
+    ]
+}

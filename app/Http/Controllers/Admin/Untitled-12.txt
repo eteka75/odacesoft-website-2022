@@ -1,0 +1,141 @@
+<?php
+
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ArticleCategorieController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\ArticleCommentaireController;
+use App\Http\Controllers\Admin\StatController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ArticleMediaController;
+use App\Http\Controllers\Admin\WebpageController;
+use App\Http\Controllers\Admin\RessourcesController;
+use App\Http\Controllers\Admin\EmailController;
+use App\Http\Controllers\Admin\ActiviteController;
+use App\Http\Controllers\Admin\CommandeController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\CategorieServiceController;
+use App\Http\Controllers\Admin\EvenementController;
+use App\Http\Controllers\Admin\PartenaireController;
+use App\Http\Controllers\Admin\MembreController;
+use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\ProjetController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\RealisationController;
+use App\Http\Controllers\Admin\AdherantController;
+use App\Http\Controllers\Admin\ParametreSiteWebController;
+use Illuminate\Support\Facades\Artisan;
+use Inertia\Inertia;
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+ //Clear route cache:
+ Route::get('/route-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    return 'Routes cache cleared';
+});
+
+//Clear config cache:
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'Config cache cleared';
+});
+
+// Clear application cache:
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+
+// Clear view cache:
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return 'View cache cleared';
+});
+##Route::get('/',[PageController::class,'Accueil'])->name('accueil');
+Route::get('/terms',[PageController::class,'Accueil'])->name('terms.show');
+Route::get('/policy',[PageController::class,'Accueil'])->name('policy.show');
+Route::get('/partenaires',[PageController::class,'Partenaires'])->name('partenaires');
+Route::get('/activites',[PageController::class,'Activites'])->name('activites');
+Route::get('/services',[PageController::class,'services'])->name('services');
+Route::get('/services/pour-les-particuliers',[PageController::class,'S_Particuliers'])->name('s-particuliers');
+Route::get('/services/pour-les-entreprises',[PageController::class,'S_Entreprises'])->name('s-entreprises');
+Route::get('/services/autres-services',[PageController::class,'S_Autres'])->name('s-autres');
+Route::get('/services/autres',[PageController::class,'S_Autres'])->name('s-autres');
+Route::get('/projets',[PageController::class,'Projets'])->name('projets');
+Route::get('/contact',[PageController::class,'Contact'])->name('contact');
+Route::get('/blog',[PageController::class,'Blog'])->name('blog');
+Route::get('/blog/{url}',[PageController::class,'ArticleShow'])->name('blog.article.show');
+Route::get('/blog/tag/{url}',[PageController::class,'TagShow'])->name('blog.tag.show');
+Route::get('/blog/categorie/{url}',[PageController::class,'CatShow'])->name('blog.cat.show');
+Route::get('/blog/categories/',[PageController::class,'CatShow'])->name('blog.cats.show');
+Route::get('/blog/tags',[PageController::class,'TagsShow'])->name('blog.tags.show');
+Route::get('/join/{group}',[PageController::class,'Join'])->name('join');
+
+Route::get('/team',[PageController::class,'Team'])->name('team');
+Route::get('/evenements',[PageController::class,'Events'])->name('events');
+Route::get('/a-propos',[PageController::class,'Apropos'])->name('apropos');
+Route::get('/help',[PageController::class,'Help'])->name('help');
+Route::get('/faq',[PageController::class,'Faq'])->name('faq');
+Route::get('/ressources',[PageController::class,'Ressources'])->name('ressources');
+Route::get('/mes-commandes',[PageController::class,'MesCommandes'])->name('mescommandes');
+Route::resource('posts', PostController::class);
+
+Route::get('/admin',[DashboardController::class,'Admin'])->name('admin');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
+
+//Route::get('/',[PageController::class,'MesCommandes'])->name('mescommandes');
+Route::middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class,'Index'])->name('dashboard');
+    Route::resource('/article', ArticleController::class);
+    Route::resource('/categorie-article', ArticleCategorieController::class);
+    Route::resource('/tags', TagController::class);
+    //Route::resource('/team', TeamController::class);
+    Route::resource('/commentaire', ArticleCommentaireController::class);
+    Route::resource('/media', ArticleMediaController::class);
+    Route::resource('/statistique', StatController::class);
+    Route::resource('/users', UserController::class);
+    Route::resource('/page', WebpageController::class);
+    Route::resource('/ressource', RessourcesController::class);
+    Route::resource('/email', EmailController::class);
+    Route::resource('/activite', ActiviteController::class);
+    //Route::resource('/statistique', StatistiqueController::class);
+    Route::resource('/evenement', EvenementController::class);
+    Route::resource('/commande', CommandeController::class);
+    Route::resource('/service', ServiceController::class);
+    Route::resource('/categorie-service', CategorieServiceController::class);
+    Route::resource('/message', ContactMessageController::class);
+    Route::resource('/membre', MembreController::class);
+    Route::resource('/adherant', AdherantController::class);
+    Route::resource('/partenaire', PartenaireController::class);
+    Route::resource('/projet', ProjetController::class);
+    Route::resource('/realisation', RealisationController::class);
+    Route::resource('/faq', FaqController::class);
+    Route::resource('/parametres', ParametreSiteWebController::class);
+    //Route::ressources('/page', DashboardController::class)->name('page');
+    //Route::ressources('/news', DashboardController::class)->name('news');
+});
