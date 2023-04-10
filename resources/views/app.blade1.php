@@ -28,7 +28,7 @@
          <!-- Styles -->
         <meta name="author" content="ETEKA S. Wilfried" />
         <meta name="theme-color" content="#4285f4">
-        <Meta name="robots " content="index, follow" />
+        <Meta name="robots" content="index, follow" />
         <!-- Primary Meta Tags -->
         <meta name="title" content="Odacesoft • Agence d'ingénierie informatique à Parakou, Bénin">
         <meta name="description" content="Nous vous aidons à conception des solutions informatiques, à déployer le réseau Informatique de vos entreprises, à mettre en place un plan de communication éfficace sur les réseaux sociaux (Facebook, Twitter, Instagram,...), et à démarrer de bon pied l'entrepreunariat si vous êtes un jeune garçon et filles/femmes.">

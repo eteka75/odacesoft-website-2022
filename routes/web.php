@@ -123,8 +123,8 @@ Route::get('/clear-route', function() {
 });
 #A Propos de Odacesoft
 Route::get('/',[PageController::class,'Accueil'])->name('accueil');
-Route::get('/ai-for-future/appel-a-communication-2022',[PageController::class,'AiforForFuture2022'])->name('accueil');
-Route::get('/test',[PageController::class,'Test'])->name('test');
+Route::get('/ai-for-future/appel-a-communication-2022',[PageController::class,'AiforForFuture2022'])->name('ai-for-future');
+#Route::get('/test',[PageController::class,'Test'])->name('test');
 #Route::get('/terms',[PageController::class,'Accueil'])->name('terms.show');
 #Route::get('/policy',[PageController::class,'Accueil'])->name('policy.show');
 Route::get('/join',[PageController::class,'Join'])->name('join');
@@ -144,7 +144,7 @@ Route::get('/soumetre-projet',[PageController::class,'SoumettreProjet'])->name('
 Route::get('/programmes',[PageController::class,'Programmes'])->name('programmes');
 Route::get('/projets',[PageController::class,'Programmes'])->name('projets');
 //Route::get('/projets',[PageController::class,'Projets'])->name('projets');
-Route::get('/emplois',[PageController::class,'Emplois'])->name('emplois');
+//Route::get('/emplois',[PageController::class,'Emplois'])->name('emplois');
 Route::get('/emplois',[PageController::class,'Emplois'])->name('emplois');
 Route::get('/startups',[PageController::class,'Startups'])->name('startups');
 Route::get('/boutique',[PageController::class,'Boutique'])->name('boutique');
@@ -181,7 +181,7 @@ Route::get('/blog/{url}',[PageController::class,'ArticleShow'])->name('blog.arti
 Route::get('/blog/tag/{url}',[PageController::class,'TagShow'])->name('blog.tag.show');
 Route::get('/blog/categorie/{url}',[PageController::class,'CatShow'])->name('blog.cat.show');
 Route::get('/blog/tags',[PageController::class,'TagsShow'])->name('blog.tags.show');
-Route::get('/join/{group}',[PageController::class,'Join'])->name('join');
+Route::get('/join/{group}',[PageController::class,'Join'])->name('join-group');
 
 Route::get('/team',[PageController::class,'Team'])->name('team');
 Route::get('/team/membre-{id}',[PageController::class,'MembreTeam'])->name('membre-team');
@@ -228,7 +228,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(func
     Route::resource('/membre', MembreController::class);
     Route::resource('/adherant', AdherantController::class);
     Route::resource('/partenaire', PartenaireController::class);
-    Route::resource('/demande-partenariat', DemandePartenariatController::class);
+    #Route::resource('/demande-partenariat', DemandePartenariatController::class);
     Route::resource('/projet', ProjetController::class);
     Route::resource('/realisation', RealisationController::class);
     Route::resource('/realisation-image', RealisationImageController::class);
